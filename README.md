@@ -2,16 +2,13 @@
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
     </a>
-    <h1 align="center">Yii 2 Basic Project Template</h1>
+    <h1 align="center">基于yii的购物小站</h1>
     <br>
 </p>
 
-Yii 2 Basic Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
-rapidly creating small projects.
+使用yii2.0.13开发，PHP版本5.6.27  mysql 5.6
 
-The template contains the basic features including user login/logout and a contact page.
-It includes all commonly used configurations that would allow you to focus on adding new
-features to your application.
+小站点仅有基本的商品展示，详情，购物车，结算。 后台包括登录注册，用户管理，分类管理，商品管理基本操作.本项目仅为了熟悉yii2练手用的。
 
 [![Latest Stable Version](https://poser.pugx.org/yiisoft/yii2-app-basic/v/stable.png)](https://packagist.org/packages/yiisoft/yii2-app-basic)
 [![Total Downloads](https://poser.pugx.org/yiisoft/yii2-app-basic/downloads.png)](https://packagist.org/packages/yiisoft/yii2-app-basic)
