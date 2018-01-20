@@ -6,7 +6,7 @@ use yii\helpers\Html;
 <!DOCTYPE html>
 <html class="login-bg">
 <head>
-	<title>Yii商城 - 后台管理</title>
+	<title>后台管理--找回密码</title>
     
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
@@ -45,15 +45,10 @@ use yii\helpers\Html;
 ]);?>
         <div class="span4 box">
             <div class="content-wrap">
-                <h6>Yii商城 - 后台管理</h6>
+                <h6>找回密码 - 后台管理</h6>
                 <?php echo $form->field($model,'adminuser')->textInput(['class'=>"span12",'placeholder'=>'管理员账号'])?>
                 <?php echo $form->field($model,'adminpass')->passwordInput(['class'=>"span12",'placeholder'=>'管理员密码'])?>
-                <a href="<?php echo yii\helpers\Url::to(['public/seekpassword'])?>" class="forgot">忘记密码?</a>
-                    <?php echo $form->field($model,'remember')->checkbox([
-                        'id'=>'remember-me',
-                        'template'=>' <div class="remember">{input} <label for="remember-me">记住我</label></div>',
-                    ]) ?>
-
+                <a href="<?php echo yii\helpers\Url::to(['public/seekpassword'])?>" class="forgot">返回登录?</a>
                 <?php echo Html::submitButton('登录',[
                     'class'=>'btn-glow primary login'
                 ])?>

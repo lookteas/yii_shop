@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
             </button>
             
-            <a class="brand" href="index.html" style="font-weight:700;font-family:Microsoft Yahei">慕课商城 - 后台管理</a>
+            <a class="brand" href="index.html" style="font-weight:700;font-family:Microsoft Yahei">Yii商城 - 后台管理</a>
 
             <ul class="nav pull-right">                
                 <li class="hidden-phone">
@@ -107,12 +107,12 @@
                     </ul>
                 </li>
                 <li class="settings hidden-phone">
-                    <a href="personal-info.html" role="button">
+                    <a href="<?php echo \yii\helpers\Url::to(['public/logout'])?>" role="button">
                         <i class="icon-cog"></i>
                     </a>
                 </li>
                 <li class="settings hidden-phone">
-                    <a href="signin.html" role="button">
+                    <a href="<?php echo \yii\helpers\Url::to(['public/logout'])?>" role="button">
                         <i class="icon-share-alt"></i>
                     </a>
                 </li>

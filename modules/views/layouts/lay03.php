@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>慕课商城 - 后台管理</title>
+    <title>Yii商城 - 后台管理</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
