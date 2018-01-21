@@ -1,6 +1,24 @@
 <?php
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
+use yii\bootstrap\Alert;
+
+if( Yii::$app->getSession()->hasFlash('success') ) {
+    echo Alert::widget([
+        'options' => [
+            'class' => 'alert-success', //这里是提示框的class
+        ],
+        'body' => Yii::$app->getSession()->getFlash('info'), //消息体
+    ]);
+}
+if( Yii::$app->getSession()->hasFlash('error') ) {
+    echo Alert::widget([
+        'options' => [
+            'class' => 'alert-error',
+        ],
+        'body' => Yii::$app->getSession()->getFlash('info'),
+    ]);
+}
 ?>
 
 <!DOCTYPE html>
@@ -46,6 +64,11 @@ use yii\helpers\Html;
         <div class="span4 box">
             <div class="content-wrap">
                 <h6>后台管理--修改密码</h6>
+                <?php
+                    if(Yii::$app->session->hasFlash('info')){
+                        echo Yii::$app->session->getFlash('info');
+                    }
+                ?>
                 <?php echo $form->field($model,'adminuser')->textInput(['class'=>"span12",'placeholder'=>'用户账号'])?>
                 <?php echo $form->field($model,'adminpass')->passwordInput(['class'=>"span12",'placeholder'=>'用户新密码'])?>
                 <?php echo $form->field($model,'repass')->passwordInput(['class'=>"span12",'placeholder'=>'再次确认密码'])?>

@@ -11,7 +11,8 @@ namespace app\modules\models;
 use Yii;
 
 class Admin extends Base{
-    public $remember = true;
+    public $remember = true;    //是否记住登录状态
+    public $repass;         //确认密码
 
     /**
      * Notes:
@@ -23,15 +24,47 @@ class Admin extends Base{
         return "{{%admin}}" ;
 }
 
+    public function attributeLabels(){
+        return [
+            'adminuser' => '管理员账号',
+            'adminemail' => '管理员邮箱',
+            'adminpass' => '管理员密码',
+            'repass' => '确认密码',
+        ];
+    }
+
+    /**
+     * Notes:后台验证规则
+     * create_User: tenger
+     *
+     * @return array
+     */
     public function rules(){
         return [
-            ['adminuser','required','message'=>'用户名不能为空', 'on'=>['login','seekpass']],
-            ['adminpass','required','message'=>'密码不能为空', 'on'=>['login']],
-            ['remember','boolean', 'on'=>['login']],
+            //验证用户名
+            ['adminuser','required','message'=>'用户名不能为空', 'on' => ['login', 'seekpass', 'changepass', 'useradd']],
+            ['adminuser','unique', 'message'=>'用户名已存在，请换一个', 'on'=>['useradd']],
+
+            //验证密码
+            ['adminpass','required','message'=>'密码不能为空', 'on' => ['login', 'changepass', 'useradd']],
+
+            //数据库比对密码
             ['adminpass','validatePass', 'on'=>['login']],
-            ['adminemail','required','message'=>'邮箱不能为空', 'on'=>['seekpass']],
-            ['adminemail','email','message'=>'邮箱格式不正确', 'on'=>['seekpass']],
+
+            //是否记住登录状态
+            ['remember','boolean', 'on'=>['login']],
+
+            //确认密码
+            ['repass','required','message'=>'确认密码不能为空', 'on' => ['changepass', 'useradd']],
+
+            //比对两次输入密码是否一致
+            ['repass','compare', 'compareAttribute'=> 'adminpass', 'message'=>'两次密码不一致' ,'on'=>['changepass', 'useradd']],
+
+            //验证邮箱
+            ['adminemail','required','message'=>'邮箱不能为空', 'on' => ['seekpass', 'useradd']],
+            ['adminemail','email','message'=>'邮箱格式不正确', 'on' => ['seekpass', 'useradd']],
             ['adminemail','validateEmail', 'on'=>['seekpass']],
+            ['adminemail','unique', 'message'=>'邮箱已注册，请换一个', 'on'=>['useradd']],
         ];
     }
 
@@ -136,5 +169,50 @@ class Admin extends Base{
     }
 
 
+    /**
+     * Notes:修改密码操作
+     * create_User: tenger
+     * @param $data
+     *
+     * @return bool
+     */
+    public function changepass($data){
+        $this->scenario = 'changepass';
+        if($this->load($data) && $this->validate()){
+            //执行更新操作
+            return (bool)$this->updateAll(
+                [
+                    'adminpass' => md5($this->adminpass)
+                ],
+                'adminuser = :user',
+                [':user' => $this->adminuser]
+            );
+        }
+
+        return false;
+    }
+
+    /**
+     * Notes:后台管理员注册(添加)
+     * create_User: tenger
+     * @param $data
+     *
+     * @return bool
+     */
+    public function userreg($data){
+        $this->scenario = 'useradd';
+
+        if($this->load($data) && $this->validate()){
+            //添加前的预处理
+            $this->loginip = ip2long(Yii::$app->request->userIP);
+            $this->createtime = time();
+            $this->adminpass = md5($this->adminpass);
+            if($this->save(false)){
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
 
 }
