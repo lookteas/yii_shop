@@ -1,3 +1,8 @@
+<?php
+use yii\bootstrap\Alert;
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +40,27 @@
 </head>
 
 <body>
+<?php
+if( Yii::$app->getSession()->hasFlash('success') ) {
+    Alert::begin([
+        'options' => [
+            'class' => 'alert-success',
+        ],
+    ]);
+    echo Yii::$app->getSession()->getFlash('success'); //消息体
+    Alert::end();
+}
 
+if( Yii::$app->getSession()->hasFlash('error') ) {
+    Alert::begin([
+        'options' => [
+            'class' => 'alert-warning',
+        ],
+    ]);
+    echo Yii::$app->getSession()->getFlash('error'); //消息体
+    Alert::end();
+}
+?>
 
 <!-- navbar -->
 <div class="navbar navbar-inverse">
@@ -139,8 +164,8 @@
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="personal-info.html">个人信息管理</a></li>
-                    <li><a href="#">修改密码</a></li>
+                    <li><a href="<?php echo yii\helpers\Url::to(['manage/changemail'])?>">个人信息管理</a></li>
+                    <li><a href="<?php echo yii\helpers\Url::to(['manage/mailchangepass']);?>">修改密码</a></li>
                     <li><a href="#">订单管理</a></li>
                 </ul>
             </li>
@@ -359,6 +384,10 @@
             }
         });
     });
+
+    window.setTimeout(function() {
+        $('.alert').alert('close');
+    }, 3000);
 </script>
 
 </body>

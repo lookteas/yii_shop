@@ -24,7 +24,6 @@ class PublicController extends BaseController{
                 //接收post参数
                 $post = Yii::$app->request->post();
                 if($admin->login($post)){
-
                     $this->redirect(['index/index']);
                     Yii::$app->end();
                 }

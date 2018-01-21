@@ -57,7 +57,7 @@
 
                 <!-- Users table -->
                 <div class="row-fluid table">
-                    <table class="table table-hover">
+                    <table class="table table-hover ">
                         <thead>
                             <tr>
                                 <th class="span1 sortable">
@@ -101,8 +101,8 @@
                             <td>
                                 <a href="#"><?php echo $manage->adminemail; ?></a>
                             </td>
-                            <td class="align-right">
-                                添加
+                            <td class="align-center">
+                                <a href="<?php echo yii\helpers\Url::to(['manage/deluser', 'adminid' => $manage->adminid]); ?>">删除</a>
                             </td>
                         </tr>
                         <?php endforeach; ?>
