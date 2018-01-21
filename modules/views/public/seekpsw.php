@@ -1,6 +1,24 @@
 <?php
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
+use yii\bootstrap\Alert;
+
+if( Yii::$app->getSession()->hasFlash('success') ) {
+    echo Alert::widget([
+        'options' => [
+            'class' => 'alert-success', //这里是提示框的class
+        ],
+        'body' => Yii::$app->getSession()->getFlash('success'), //消息体
+    ]);
+}
+if( Yii::$app->getSession()->hasFlash('error') ) {
+    echo Alert::widget([
+        'options' => [
+            'class' => 'alert-error',
+        ],
+        'body' => Yii::$app->getSession()->getFlash('error'),
+    ]);
+}
 ?>
 
 <!DOCTYPE html>
@@ -33,6 +51,7 @@ use yii\helpers\Html;
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<tips></tips>
 <body>
 
 
@@ -81,6 +100,9 @@ use yii\helpers\Html;
             });
 
         });
+        window.setTimeout(function() {
+            $('.alert').alert('close');
+        }, 3000);
     </script>
 
 </body>

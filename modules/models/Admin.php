@@ -91,11 +91,50 @@ class Admin extends Base{
         return false;
     }
 
+    /**
+     * Notes:修改密码时邮件通知
+     * create_User: tenger
+     * @param $data
+     *
+     * @return bool
+     */
     public function seekpass($data){
         $this->scenario = 'seekpass';
         if($this->load($data) && $this->validate()){
-            //
+            //创建秘钥
+            $time = time();
+            $token = $this->createToken($data['Admin']['adminuser'],$time);
+            //发送邮件
+            $mailer = Yii::$app->mailer->compose('seekpass', [
+                'adminuser'=>$data['Admin']['adminuser'],
+                'time'=> $time,
+                'token'=> $token,
+            ]);
+            $mailer->setFrom('tenger35@163.com');
+            $mailer->setTo('tenger05@163.com');
+            $mailer->setSubject('yii商城找回密码');
+            if($mailer->send()){
+                Yii::$app->getSession()->setFlash('success', '邮件发送成功');
+                return true;
+            }
         }
         return false;
     }
+
+    /**
+     * Notes:创建用户秘钥
+     * create_User: tenger
+     * @param $adminuser
+     * @param $time
+     *
+     * @return string
+     */
+    public function createToken($adminuser, $time)
+    {
+        return md5(md5($adminuser).base64_encode(Yii::$app->request->userIP).md5($time));
+        //md5(md5(用户名)+base64(登录ip)+md5(时间戳))
+    }
+
+
+
 }
