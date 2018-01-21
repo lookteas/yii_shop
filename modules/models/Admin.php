@@ -25,13 +25,20 @@ class Admin extends Base{
 
     public function rules(){
         return [
-            ['adminuser','required','message'=>'用户名不能为空'],
-            ['adminpass','required','message'=>'密码不能为空'],
-            ['remember','boolean'],
-            ['adminpass','validatePass'],
+            ['adminuser','required','message'=>'用户名不能为空', 'on'=>['login','seekpass']],
+            ['adminpass','required','message'=>'密码不能为空', 'on'=>['login']],
+            ['remember','boolean', 'on'=>['login']],
+            ['adminpass','validatePass', 'on'=>['login']],
+            ['adminemail','required','message'=>'邮箱不能为空', 'on'=>['seekpass']],
+            ['adminemail','email','message'=>'邮箱格式不正确', 'on'=>['seekpass']],
+            ['adminemail','validateEmail', 'on'=>['seekpass']],
         ];
     }
 
+    /**
+     * Notes:用户密码验证
+     * create_User: tenger
+     */
     public function validatePass(){
         //如果没有错误则查询数据库
         if(!$this->hasErrors()){
@@ -41,7 +48,29 @@ class Admin extends Base{
             }
         }
     }
+
+    /**
+     * Notes:邮箱验证
+     * create_User: tenger
+     */
+    public function validateEmail(){
+        if(!$this->getErrors()){
+            $data = self::find()->where('adminuser= :user and adminemail = :email',[':user'=>$this->adminuser,':email'=>$this->adminemail])->one();
+            if(is_null($data)){
+                $this->addError('adminemail','用户邮箱不一致~');
+            }
+        }
+    }
+
+    /**
+     * Notes:用户登录验证
+     * create_User: tenger
+     * @param $data
+     *
+     * @return bool
+     */
     public function login($data){
+        $this->scenario = 'login';
         if($this->load($data) && $this->validate()){
             //判断是否有选中的登录状态
             $lifetime = $this->remember ? 86400 : 0;
@@ -58,6 +87,14 @@ class Admin extends Base{
                 'loginip' => ip2long(Yii::$app->request->userIP),
             ], 'adminuser = :user',[':user'=> $this->adminuser]);
             return (bool)$session['admin']['isLogin'];
+        }
+        return false;
+    }
+
+    public function seekpass($data){
+        $this->scenario = 'seekpass';
+        if($this->load($data) && $this->validate()){
+            //
         }
         return false;
     }

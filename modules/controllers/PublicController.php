@@ -47,7 +47,12 @@ class PublicController extends BaseController{
         $this->goBack();
     }
 
-    public function seekpassword(){
-        return $this->render('seekpsw');
+    public function actionSeekpassword(){
+        $admin = new Admin();
+        if(Yii::$app->request->isPost){
+            $post = Yii::$app->request->post();
+            $admin->seekpass($post);
+        }
+        return $this->render('seekpsw',['model'=>$admin]);
     }
 }
