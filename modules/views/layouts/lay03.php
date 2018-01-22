@@ -218,12 +218,12 @@ if( Yii::$app->getSession()->hasFlash('error') ) {
         <li>
             <a class="dropdown-toggle" href="#">
                 <i class="icon-edit"></i>
-                <span>表单</span>
+                <span>菜单管理</span>
                 <i class="icon-chevron-down"></i>
             </a>
             <ul class="submenu">
-                <li><a href="form-showcase.html">基本表单</a></li>
-                <li><a href="form-wizard.html">步骤表单</a></li>
+                <li><a href="<?php echo \yii\helpers\Url::to(['category/list']);?>">菜单列表</a></li>
+                <li><a href="<?php echo \yii\helpers\Url::to(['category/add']);?>">添加菜单</a></li>
             </ul>
         </li>
         <li>
