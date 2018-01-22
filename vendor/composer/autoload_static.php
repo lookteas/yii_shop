@@ -35,8 +35,13 @@ class ComposerStaticInita566e8f6a93f12a36de46629272cd202
             'kartik\\dialog\\' => 14,
             'kartik\\base\\' => 12,
         ),
+        'd' => 
+        array (
+            'dzer\\express\\' => 13,
+        ),
         'c' => 
         array (
+            'crazyfd\\qiniu\\' => 14,
             'cebe\\markdown\\' => 14,
         ),
         'W' => 
@@ -122,6 +127,14 @@ class ComposerStaticInita566e8f6a93f12a36de46629272cd202
         'kartik\\base\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-krajee-base',
+        ),
+        'dzer\\express\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dzer/yii2-express/src',
+        ),
+        'crazyfd\\qiniu\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/crazyfd/yii2-qiniu',
         ),
         'cebe\\markdown\\' => 
         array (

@@ -6,10 +6,10 @@ use yii\db\ActiveRecord;
 
 class Product extends ActiveRecord
 {
-    const AK = 'toix9okVaTB0uz6oxPe_vTnW-psg62jGuQOb01uZ';
-    const SK = '9BbqEK8nmW-LlLWnmt4Aqe3CWWKN-IiSJMDlY0a3';
-    const DOMAIN = 'o7zgluxwg.bkt.clouddn.com';
-    const BUCKET = 'imooc-shop';
+    const AK = 'lsuUWKuEMOUG6-yLa3FhyBKoXz4AYJ-aumlOCVvL';
+    const SK = 'wMdZoFdc050kn4hybNSIVaJuDaVGDZKR77cxBvnE';
+    const DOMAIN = 'ooavqbrbq.bkt.clouddn.com';
+    const BUCKET = 'opea-cms';
 
     public $cate;
 

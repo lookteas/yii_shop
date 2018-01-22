@@ -66,4 +66,22 @@ return array (
       '@kartik/dialog' => $vendorDir . '/kartik-v/yii2-dialog',
     ),
   ),
+  'crazyfd/yii2-qiniu' => 
+  array (
+    'name' => 'crazyfd/yii2-qiniu',
+    'version' => '1.0.4.0',
+    'alias' => 
+    array (
+      '@crazyfd/qiniu' => $vendorDir . '/crazyfd/yii2-qiniu',
+    ),
+  ),
+  'dzer/yii2-express' => 
+  array (
+    'name' => 'dzer/yii2-express',
+    'version' => '1.3.0.0',
+    'alias' => 
+    array (
+      '@dzer/express' => $vendorDir . '/dzer/yii2-express/src',
+    ),
+  ),
 );

@@ -456,6 +456,49 @@
         "description": "BDD assertion library for PHPUnit"
     },
     {
+        "name": "crazyfd/yii2-qiniu",
+        "version": "1.0.4",
+        "version_normalized": "1.0.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/crazyfd/upload.git",
+            "reference": "7334326aac39b4839d045ab28493e37bf1db5d56"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/crazyfd/upload/7334326aac39b4839d045ab28493e37bf1db5d56.zip",
+            "reference": "7334326aac39b4839d045ab28493e37bf1db5d56",
+            "shasum": ""
+        },
+        "require": {
+            "yiisoft/yii2": "*"
+        },
+        "time": "2018-01-03T06:10:14+00:00",
+        "type": "yii2-extension",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "crazyfd\\qiniu\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "crazyfd",
+                "email": "crazyfd@qq.com"
+            }
+        ],
+        "description": "yii2上传到七牛云存储",
+        "keywords": [
+            "qiniu",
+            "upload",
+            "yii"
+        ]
+    },
+    {
         "name": "doctrine/instantiator",
         "version": "1.0.5",
         "version_normalized": "1.0.5.0",
@@ -509,6 +552,50 @@
         "keywords": [
             "constructor",
             "instantiate"
+        ]
+    },
+    {
+        "name": "dzer/yii2-express",
+        "version": "v1.3",
+        "version_normalized": "1.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/dzer/yii2-express.git",
+            "reference": "b869dc7a5efb454604c0a39279180bb4ee194b51"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/dzer/yii2-express/b869dc7a5efb454604c0a39279180bb4ee194b51.zip",
+            "reference": "b869dc7a5efb454604c0a39279180bb4ee194b51",
+            "shasum": ""
+        },
+        "require": {
+            "yiisoft/yii2": "*"
+        },
+        "time": "2016-06-17T03:09:37+00:00",
+        "type": "yii2-extension",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "dzer\\express\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "dzer",
+                "email": "d20053140@gmail.com",
+                "homepage": "http://dzer.me"
+            }
+        ],
+        "description": "快递单号查询,支持国内近100家快递单号查询。",
+        "keywords": [
+            "extension",
+            "yii2",
+            "快递"
         ]
     },
     {
